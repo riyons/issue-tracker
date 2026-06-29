@@ -13,7 +13,7 @@ const NavBar = () => {
 
   return (
     <nav className="flex space-x-6 border-b mb-5 px-5 h-14 items-center">
-      <Link href="/">
+      <Link href="/" className="text-xl text-violet-600">
         <AiFillBug />
       </Link>
       <ul className="flex space-x-6">

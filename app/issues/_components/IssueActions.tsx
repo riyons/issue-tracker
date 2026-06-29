@@ -9,9 +9,9 @@ interface Props {
 const IssueActions = ({ issueId }: Props) => {
   return (
     <Flex direction="column" gap="3">
-      <Link href={`/issues/${issueId}/edit`}>
-        <Button>Edit Issue</Button>
-      </Link>
+      <Button asChild>
+        <Link href={`/issues/${issueId}/edit`}>Edit Issue</Link>
+      </Button>
       <DeleteIssueButton issueId={issueId}></DeleteIssueButton>
     </Flex>
   );
