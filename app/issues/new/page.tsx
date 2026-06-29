@@ -1,6 +1,6 @@
-import NewIssueForm from "./NewIssueForm";
+import IssueForm from "../_components/IssueForm";
 
 const NewIssuePage = () => {
-  return <NewIssueForm />;
+  return <IssueForm />;
 };
 export default NewIssuePage;

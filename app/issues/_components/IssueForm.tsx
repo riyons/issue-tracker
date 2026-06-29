@@ -11,9 +11,14 @@ import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { issueSchema, IssueFormData } from "@/app/validationSchemas";
 import { useState, useTransition } from "react";
-import { createIssue } from "./actions";
+import { createIssue, updateIssue } from "../_actions/issueActions";
+import { Issue } from "@/app/generated/prisma/client";
 
-const NewIssueForm = () => {
+interface Props {
+  issue?: Issue;
+}
+
+const NewIssueForm = ({ issue }: Props) => {
   const {
     register,
     control,
@@ -21,6 +26,9 @@ const NewIssueForm = () => {
     formState: { errors },
   } = useForm<IssueFormData>({
     resolver: zodResolver(issueSchema),
+    defaultValues: issue
+      ? { title: issue.title, description: issue.description }
+      : undefined,
   });
 
   const [serverError, setServerError] = useState<string | null>(null);
@@ -29,7 +37,9 @@ const NewIssueForm = () => {
   const onSubmit = handleSubmit((data) => {
     setServerError(null);
     startTransition(async () => {
-      const result = await createIssue(data);
+      const result = issue
+        ? await updateIssue(issue.id, data)
+        : await createIssue(data);
       if (!result.success) {
         setServerError(result.error);
       }
@@ -60,7 +70,13 @@ const NewIssueForm = () => {
           <p className="text-red-500 text-sm">{errors.description.message}</p>
         )}
         <Button disabled={isPending}>
-          {isPending ? "Submitting..." : "Submit New Issue"}
+          {isPending
+            ? issue
+              ? "Updating..."
+              : "Submitting..."
+            : issue
+              ? "Update Issue"
+              : "Submit Issue"}
         </Button>
       </form>
     </div>
