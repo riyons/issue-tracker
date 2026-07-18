@@ -1,37 +1,23 @@
-"use client";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { AiFillBug } from "react-icons/ai";
-import classNames from "classnames";
+import NavLinks from "./NavLinks";
+import AuthStatus from "./AuthStatus";
+import { Box, Container, Flex } from "@radix-ui/themes";
 
 const NavBar = () => {
-  const currentPath = usePathname();
-  const links = [
-    { label: "Dashboard", href: "/" },
-    { label: "Issues", href: "/issues" },
-  ];
-
   return (
-    <nav className="flex space-x-6 border-b mb-5 px-5 h-14 items-center">
-      <Link href="/" className="text-xl text-violet-600">
-        <AiFillBug />
-      </Link>
-      <ul className="flex space-x-6">
-        {links.map((link) => (
-          <li key={link.href}>
-            <Link
-              href={link.href}
-              className={classNames({
-                "text-zinc-900": link.href === currentPath,
-                "text-zinc-500": link.href !== currentPath,
-                "hover:text-zinc-800 transition-colors": true,
-              })}
-            >
-              {link.label}
+    <nav className="border-b mb-5 px-5 py-3">
+      <Container>
+        <Flex justify="between">
+          <Flex align="center" gap="3">
+            <Link href="/">
+              <AiFillBug />
             </Link>
-          </li>
-        ))}
-      </ul>
+            <NavLinks />
+          </Flex>
+          <AuthStatus />
+        </Flex>
+      </Container>
     </nav>
   );
 };

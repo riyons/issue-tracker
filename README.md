@@ -163,10 +163,10 @@ If you're migrating an older Next.js project, the commits in this repo can serve
 - [x] Project setup with Next.js 16 + Prisma + Radix UI
 - [x] Navbar with active link highlighting
 - [x] Issues list page (Server Component + Prisma)
-- [ ] Create issue with Server Actions + Zod validation
-- [ ] Issue detail page with markdown rendering
-- [ ] Edit and delete issues
-- [ ] Authentication with Auth.js v5 + Google OAuth
+- [x] Create issue with Server Actions + Zod validation
+- [x] Issue detail page with markdown rendering
+- [x] Edit and delete issues
+- [x] Authentication with Auth.js v5 + Google OAuth
 - [ ] Assign issues to users
 - [ ] Filter, sort, and paginate
 - [ ] Dashboard with charts
